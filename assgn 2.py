@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # read the file and skip the first 3 rows
     df = pd.read_csv('gandhi_et_al_bouts.csv', skiprows = 3)
     
-    # create two empty lists
+    # initialize two empty lists
     bout_lengths_wt = []
     bout_lengths_mut = []
     # append bout lengths of wt and of mut into the lists
@@ -32,6 +32,7 @@ if __name__ == '__main__':
 
     # convert the lists to arrays using np.array and
     # change the list of strings to numeric type using .astype(np.float)
+    # so that the mean active bout lengths can be computed
     bout_lengths_wt = np.array(bout_lengths_wt).astype(np.float)
     bout_lengths_mut = np.array(bout_lengths_mut).astype(np.float)
 
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     mean_wt = np.mean(bout_lengths_wt)
     mean_mut = np.mean(bout_lengths_mut)
 
-    # draw 10000 boostrap replicates
+    # draw 10000 boostrap replicates from the data
     bs_reps_wt = draw_bs_reps(bout_lengths_wt, np.mean, size=10000)
     bs_reps_mut = draw_bs_reps(bout_lengths_mut, np.mean, size=10000)
 
